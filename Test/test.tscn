@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccj60vypjqngp"]
+
+[ext_resource type="Script" path="res://Test/test.gd" id="1_ykyef"]
+[ext_resource type="Script" path="res://Commons/AwaitableHTTPRequest.gd" id="2_xi4xu"]
+
+[node name="Test" type="Node"]
+script = ExtResource("1_ykyef")
+
+[node name="AwaitableHTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("2_xi4xu")

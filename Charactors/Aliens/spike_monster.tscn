@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bhtp3avhot5ks"]
+
+[ext_resource type="Script" path="res://Charactors/slime.gd" id="1_038ak"]
+[ext_resource type="Texture2D" uid="uid://bq12gcf0ilunn" path="res://assets/charactors/tilemap-characters_packed.png" id="2_jruyg"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="3_tnteg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nui1"]
+atlas = ExtResource("2_jruyg")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3efa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nui1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_64g0m"]
+
+[node name="spike_monster" type="CharacterBody2D" groups=["敌人"]]
+script = ExtResource("1_038ak")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_3efa0")
+autoplay = "default"
+frame_progress = 0.828228
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("CircleShape2D_64g0m")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_tnteg")]
+position = Vector2(-11, -23)
+scale = Vector2(0.3, 0.3)

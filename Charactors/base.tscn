@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwjureto8ijww"]
+
+[ext_resource type="Script" path="res://Charactors/base.gd" id="1_rfmtn"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="4_p7hr1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sa152"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="base" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 2
+script = ExtResource("1_rfmtn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_sa152")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.696557
+
+[node name="Healthbar" parent="." instance=ExtResource("4_p7hr1")]
+position = Vector2(-11, -31)
+scale = Vector2(0.3, 0.3)
+damage_reduction_percent = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

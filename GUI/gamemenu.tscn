@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs8cvy78o3mok"]
+
+[ext_resource type="Script" path="res://GUI/gamemenu.gd" id="1_g5trt"]
+[ext_resource type="Texture2D" uid="uid://crvi57lkmc7vt" path="res://assets/gui/uipackSpace_sheet.png" id="2_qlp7r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0lx7"]
+atlas = ExtResource("2_qlp7r")
+region = Rect2(199.423, 200.687, 100.329, 98.4859)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpx1n"]
+atlas = ExtResource("2_qlp7r")
+region = Rect2(201.035, 201.909, 97.5424, 97.9666)
+
+[node name="main" type="Panel"]
+offset_top = -1.0
+offset_right = 535.0
+offset_bottom = 268.0
+scale = Vector2(3, 3)
+script = ExtResource("1_g5trt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1053.0
+offset_bottom = 529.0
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_g0lx7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+scale = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="one" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="1" type="Button" parent="VBoxContainer/one"]
+modulate = Color(0.960784, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 1, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "关卡1"
+icon = SubResource("AtlasTexture_dpx1n")
+flat = true
+icon_alignment = 1
+
+[node name="2" type="Button" parent="VBoxContainer/one"]
+modulate = Color(0.960784, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 1, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "关卡2"
+icon = SubResource("AtlasTexture_dpx1n")
+flat = true
+icon_alignment = 1
+
+[node name="3" type="Button" parent="VBoxContainer/one"]
+modulate = Color(0.960784, 1, 1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 1, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "关卡3"
+icon = SubResource("AtlasTexture_dpx1n")
+flat = true
+icon_alignment = 1
+
+[node name="4" type="Button" parent="VBoxContainer/one"]
+modulate = Color(1, 0.717647, 1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 1, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "塔防1"
+icon = SubResource("AtlasTexture_dpx1n")
+flat = true
+icon_alignment = 1
+
+[node name="5" type="Button" parent="VBoxContainer/one"]
+modulate = Color(0.311593, 0.924128, 1, 1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.945098, 1, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "测试3"
+icon = SubResource("AtlasTexture_dpx1n")
+flat = true
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/one/1" to="." method="level1"]
+[connection signal="pressed" from="VBoxContainer/one/2" to="." method="level2"]
+[connection signal="pressed" from="VBoxContainer/one/3" to="." method="level3"]
+[connection signal="pressed" from="VBoxContainer/one/4" to="." method="level4"]
+[connection signal="pressed" from="VBoxContainer/one/5" to="." method="level5"]

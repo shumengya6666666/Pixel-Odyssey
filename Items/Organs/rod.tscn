@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://btmid4cjdapci"]
+
+[ext_resource type="Script" path="res://Items/Sundries/coin.gd" id="1_h874c"]
+[ext_resource type="Texture2D" uid="uid://bgdopqragtcr4" path="res://assets/maps/tilemap_packed.png" id="2_ussnx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4ghb"]
+atlas = ExtResource("2_ussnx")
+region = Rect2(72, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u84t"]
+atlas = ExtResource("2_ussnx")
+region = Rect2(90, 54, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0vfa"]
+atlas = ExtResource("2_ussnx")
+region = Rect2(108, 54, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_by4rm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4ghb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u84t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0vfa")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnru4"]
+size = Vector2(15, 11)
+
+[node name="Coin" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_h874c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_by4rm")
+animation = &"new_animation"
+frame = 2
+frame_progress = 0.946351
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_pnru4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

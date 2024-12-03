@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://blom0bojeihp3"]
+
+[sub_resource type="Curve" id="Curve_vcio8"]
+_data = [Vector2(0.03125, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.232877), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="ExplosionParticles" type="CPUParticles2D"]
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.41
+emission_shape = 4
+emission_points = PackedVector2Array()
+emission_colors = PackedColorArray()
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_vcio8")

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2ukdgcb8pwm0"]
+
+[ext_resource type="Script" path="res://Items/Organs/beacon.gd" id="1_wifr8"]
+[ext_resource type="Texture2D" uid="uid://t243jwek44gq" path="res://assets/items/Start (Idle).png" id="2_coa07"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="3_vaoqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3py5"]
+atlas = ExtResource("2_coa07")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkacm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3py5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="beacon" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_wifr8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(17, -3)
+sprite_frames = SubResource("SpriteFrames_jkacm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
+
+[node name="Healthbar" parent="." instance=ExtResource("3_vaoqr")]
+position = Vector2(-35, -51)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

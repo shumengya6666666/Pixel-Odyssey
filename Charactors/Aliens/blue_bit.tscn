@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://sqya6mgf45b0"]
+
+[ext_resource type="Script" path="res://Charactors/slime.gd" id="1_r67ot"]
+[ext_resource type="Texture2D" uid="uid://bq12gcf0ilunn" path="res://assets/charactors/tilemap-characters_packed.png" id="2_lec03"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="3_vaj8q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb775"]
+atlas = ExtResource("2_lec03")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d83y5"]
+atlas = ExtResource("2_lec03")
+region = Rect2(96, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbixi"]
+atlas = ExtResource("2_lec03")
+region = Rect2(120, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3efa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb775")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d83y5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbixi")
+}],
+"loop": true,
+"name": &"static",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88sgv"]
+size = Vector2(21, 23)
+
+[node name="Blue_bit" type="CharacterBody2D" groups=["敌人"]]
+script = ExtResource("1_r67ot")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_3efa0")
+animation = &"static"
+autoplay = "default"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -10.5)
+shape = SubResource("RectangleShape2D_88sgv")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_vaj8q")]
+position = Vector2(-11, -23)
+scale = Vector2(0.3, 0.3)

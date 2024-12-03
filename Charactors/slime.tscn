@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://btqwx3o2nibgq"]
+
+[ext_resource type="Texture2D" uid="uid://cuo2265iogay4" path="res://assets/sprites/slime_green.png" id="1_aikkc"]
+[ext_resource type="Script" path="res://Charactors/slime.gd" id="1_wby0r"]
+[ext_resource type="Shader" path="res://Shaders/highlight.gdshader" id="2_pguoh"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="3_nqxin"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nsh15"]
+shader = ExtResource("2_pguoh")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 0.5
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/pause_duration = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li4bg"]
+atlas = ExtResource("1_aikkc")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3w0o"]
+atlas = ExtResource("1_aikkc")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oatna"]
+atlas = ExtResource("1_aikkc")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppmte"]
+atlas = ExtResource("1_aikkc")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3efa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li4bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3w0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oatna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppmte")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88sgv"]
+size = Vector2(12, 10)
+
+[node name="Slime" type="CharacterBody2D" groups=["敌人"]]
+script = ExtResource("1_wby0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_nsh15")
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_3efa0")
+autoplay = "default"
+frame_progress = 0.828228
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_88sgv")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_nqxin")]
+position = Vector2(-11, -23)
+scale = Vector2(0.3, 0.3)

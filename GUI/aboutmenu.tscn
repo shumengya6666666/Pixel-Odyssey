@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl5aj3qeck8xh"]
+
+[ext_resource type="Script" path="res://GUI/aboutmenu.gd" id="1_l62pl"]
+
+[node name="aboutmenu" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 2002.0
+offset_bottom = 1004.0
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_l62pl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+bbcode_enabled = true
+text = "[center][color=blue]游戏玩法说明[/color][/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "本游戏基于Godot游戏引擎，采用Gdscript语言开发，支持Windows，Android，Linux等平台
+游戏作者：树萌芽
+QQ：3205788256
+
+游戏玩法介绍：
+对于电脑端用户，默认W，D，A三键，按住空格或鼠标左键发射子弹攻击，按R键切换武器，目前只支持远程攻击
+
+对于手机端用户（还未开发，敬请期待）
+
+未来计划：
+【√】游戏基本框架和流程，游戏UI
+【√】完成冒险模式（关卡模式，暂定为闯关捡物品，物品可用于生存模式）
+【  】完成生存模式（可挖掘和自由放置方块，无世界墙限制，自由刷怪和生成遗迹，建筑物）
+【  】完成塔防模式（不可放置方块，会有源源不断的敌人进攻你的据点，类似于保卫萝卜）
+【  】完成创造模式（沙盒模式，自带飞行和无限制放置方块，自由操控怪物，可以玩电子斗蛐蛐）
+【  】☆实现websocket伪联机功能（仅限于生存模式和塔防模式）（可以相互发送消息聊天，相互影响对方的世界，比如给别人世界添加怪物，放置和破坏方块等，却并不是相同的玩家对等体）"
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "返回主界面"
+
+[connection signal="meta_clicked" from="VBoxContainer/Title" to="." method="_on_title_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

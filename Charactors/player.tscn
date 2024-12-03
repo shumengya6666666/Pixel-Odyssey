@@ -1,0 +1,106 @@
+[gd_scene load_steps=17 format=3 uid="uid://ddvasg1pc85yn"]
+
+[ext_resource type="Script" path="res://Charactors/player.gd" id="1_rw4yn"]
+[ext_resource type="Texture2D" uid="uid://bdkfibqwe8qxy" path="res://assets/sprites/knight.png" id="1_y2exp"]
+[ext_resource type="Shader" path="res://Shaders/Glittering.gdshader" id="2_8t20y"]
+[ext_resource type="PackedScene" uid="uid://d4b38l8sweyon" path="res://Items/melee_attack.tscn" id="3_exaam"]
+[ext_resource type="PackedScene" uid="uid://bn6vmbw2366qv" path="res://Items/gun.tscn" id="3_qm0bq"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="4_0nb6o"]
+[ext_resource type="AudioStream" uid="uid://b2f2uvvibc4pj" path="res://assets/sounds/Footstep.wav" id="5_mmw8k"]
+[ext_resource type="AudioStream" uid="uid://cihinq04nmj85" path="res://assets/sounds/Jump1.wav" id="6_dmn10"]
+[ext_resource type="AudioStream" uid="uid://cybnvb1yq464u" path="res://assets/sounds/hurt.wav" id="6_litjc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hivx"]
+shader = ExtResource("2_8t20y")
+shader_parameter/gold_effect_enabled = true
+shader_parameter/speed = 2.0
+shader_parameter/edge_thickness = 1.0
+shader_parameter/gold_color = Vector4(1, 0.85, 0, 1)
+shader_parameter/blur_amount = 0.5
+shader_parameter/is_hit = false
+shader_parameter/hit_intensity = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3elny"]
+atlas = ExtResource("1_y2exp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn8dl"]
+atlas = ExtResource("1_y2exp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfekf"]
+atlas = ExtResource("1_y2exp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sdn6"]
+atlas = ExtResource("1_y2exp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sa152"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3elny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn8dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfekf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sdn6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6h8u7"]
+size = Vector2(9, 14)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 2
+script = ExtResource("1_rw4yn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_8hivx")
+position = Vector2(0.5, -12)
+scale = Vector2(0.96875, 1)
+sprite_frames = SubResource("SpriteFrames_sa152")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.696557
+
+[node name="Melee_Attack" parent="." instance=ExtResource("3_exaam")]
+
+[node name="Ranged_Attack" parent="." instance=ExtResource("3_qm0bq")]
+visible = false
+position = Vector2(0, -7)
+
+[node name="Healthbar" parent="." instance=ExtResource("4_0nb6o")]
+position = Vector2(-11, -31)
+scale = Vector2(0.3, 0.3)
+damage_reduction_percent = 50.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="jump_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_dmn10")
+
+[node name="hurt_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_litjc")
+
+[node name="walk_sound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_mmw8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -8)
+shape = SubResource("RectangleShape2D_6h8u7")
+
+[connection signal="timeout" from="Timer" to="." method="generate_residual_image"]

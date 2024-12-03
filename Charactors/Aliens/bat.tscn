@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cf3pge30h4yfu"]
+
+[ext_resource type="Script" path="res://Charactors/slime.gd" id="1_muukq"]
+[ext_resource type="Texture2D" uid="uid://bq12gcf0ilunn" path="res://assets/charactors/tilemap-characters_packed.png" id="2_5q0ju"]
+[ext_resource type="PackedScene" uid="uid://dsgaesdt7kaba" path="res://Commons/healthbar.tscn" id="3_57q3j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad0kk"]
+atlas = ExtResource("2_5q0ju")
+region = Rect2(144, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vsrl"]
+atlas = ExtResource("2_5q0ju")
+region = Rect2(168, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omjkp"]
+atlas = ExtResource("2_5q0ju")
+region = Rect2(192, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3efa0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad0kk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vsrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omjkp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88sgv"]
+size = Vector2(14, 13)
+
+[node name="bat" type="CharacterBody2D" groups=["敌人"]]
+script = ExtResource("1_muukq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -11)
+sprite_frames = SubResource("SpriteFrames_3efa0")
+autoplay = "default"
+frame_progress = 0.828228
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_88sgv")
+
+[node name="Healthbar" parent="." instance=ExtResource("3_57q3j")]
+position = Vector2(-11, -23)
+scale = Vector2(0.3, 0.3)

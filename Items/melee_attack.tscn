@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4b38l8sweyon"]
+
+[ext_resource type="Script" path="res://Items/melee_attack.gd" id="1_464w4"]
+[ext_resource type="Texture2D" uid="uid://bae7o4kibq723" path="res://MC/iron_sword.tres" id="2_5nq11"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_t2mhh"]
+a = Vector2(4, -16)
+b = Vector2(-15, 1)
+
+[node name="Melee_Attack" type="Marker2D"]
+position = Vector2(10, -11)
+script = ExtResource("1_464w4")
+
+[node name="Melee_Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_5nq11")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7, 6)
+shape = SubResource("SegmentShape2D_t2mhh")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

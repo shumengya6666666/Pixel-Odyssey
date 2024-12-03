@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bn6vmbw2366qv"]
+
+[ext_resource type="Script" path="res://Items/Gun.gd" id="1_73y7n"]
+[ext_resource type="Texture2D" uid="uid://b373wc32084y3" path="res://assets/weapons/guns/US.png" id="2_ena46"]
+[ext_resource type="AudioStream" uid="uid://d2vb80jgmlmky" path="res://assets/sounds/sound (26).wav" id="3_7ybj6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nacyx"]
+atlas = ExtResource("2_ena46")
+region = Rect2(66, 31, 27, 11)
+
+[node name="Gun" type="Marker2D"]
+script = ExtResource("1_73y7n")
+
+[node name="CoolDown" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Gun_Texture" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_nacyx")
+
+[node name="Shoot_Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7ybj6")

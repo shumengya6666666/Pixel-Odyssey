@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://k306drrincj3"]
+
+[ext_resource type="Script" path="res://GUI/Notice_Board.gd" id="1_luetw"]
+
+[node name="NoticeBoard" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 1772.0
+offset_bottom = 976.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_luetw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+bbcode_enabled = true
+text = "[i][url=https://shumengya.top][center][color=red]萌[/color][color=maroon]芽[/color][color=yellow]公[/color][color=green]告[/color][color=blue]栏[/color][/center][/url][/i]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "正在获取公告栏内容中..."
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "我已知晓"
+
+[connection signal="meta_clicked" from="VBoxContainer/Title" to="." method="_on_title_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

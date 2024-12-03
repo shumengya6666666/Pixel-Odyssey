@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://il3v6kqkbma5"]
+
+[ext_resource type="Script" path="res://Items/Organs/flag.gd" id="1_cx8s3"]
+[ext_resource type="Texture2D" uid="uid://bgdopqragtcr4" path="res://assets/maps/tilemap_packed.png" id="2_gfamo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g2ek"]
+size = Vector2(17, 35)
+
+[node name="flag" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_cx8s3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gfamo")
+region_enabled = true
+region_rect = Rect2(198, 90, 18, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.5)
+shape = SubResource("RectangleShape2D_7g2ek")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

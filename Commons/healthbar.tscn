@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsgaesdt7kaba"]
+
+[ext_resource type="Script" path="res://Commons/healthbar.gd" id="1_rrjyr"]
+
+[node name="Healthbar" type="Node2D"]
+script = ExtResource("1_rrjyr")
+
+[node name="healthLabel" type="Label" parent="."]
+visible = false
+offset_top = 14.0
+offset_right = 72.0
+offset_bottom = 37.0
+text = "HP:99999"
+
+[node name="shieldLabel" type="Label" parent="."]
+visible = false
+modulate = Color(0, 1, 1, 1)
+offset_right = 72.0
+offset_bottom = 23.0
+text = "DP:99999"
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0.211765, 0.466667, 1, 1)
+offset_top = 17.0
+offset_right = 237.0
+offset_bottom = 63.0
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 33
+value = 12.0
+
+[node name="shieldbar" type="ProgressBar" parent="."]
+modulate = Color(0.186526, 0.499372, 1, 1)
+offset_right = 237.0
+offset_bottom = 50.0
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 33

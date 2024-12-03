@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://h5spw08nr4xn"]
+
+[ext_resource type="Script" path="res://GUI/gamemenu.gd" id="1_lkfub"]
+[ext_resource type="Texture2D" uid="uid://crvi57lkmc7vt" path="res://assets/gui/uipackSpace_sheet.png" id="2_xrg7b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0lx7"]
+atlas = ExtResource("2_xrg7b")
+region = Rect2(199.423, 200.687, 100.329, 98.4859)
+
+[node name="main" type="Panel"]
+offset_top = -1.0
+offset_right = 535.0
+offset_bottom = 268.0
+scale = Vector2(3, 3)
+script = ExtResource("1_lkfub")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1346.0
+offset_bottom = 665.0
+scale = Vector2(0.4, 0.4)
+alignment = 1
+
+[node name="AdventureMode" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "冒险模式"
+
+[node name="TowerDefenseMode" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "塔防模式"
+
+[node name="SurvivalMode" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "生存模式"
+
+[node name="CreativeMode" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "创造模式"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1053.0
+offset_bottom = 529.0
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_g0lx7")

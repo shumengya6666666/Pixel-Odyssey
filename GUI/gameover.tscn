@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://eppss1w3jyq"]
+
+[ext_resource type="Script" path="res://GUI/gameover.gd" id="1_ydgfc"]
+
+[node name="gameover" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 1772.0
+offset_bottom = 976.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ydgfc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 100
+theme_override_font_sizes/italics_font_size = 50
+bbcode_enabled = true
+text = "[center][color=yellow]游戏结束！[/color][/center]	"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Killed_Enemy_Number" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "正在获取游戏数据中..."
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Try_Again" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 80
+text = "再来一次"
+
+[node name="BackHome" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 80
+text = "回到主菜单"
+
+[connection signal="meta_clicked" from="VBoxContainer/Title" to="." method="_on_title_meta_clicked"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Try_Again" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/BackHome" to="." method="_on_back_home_pressed"]

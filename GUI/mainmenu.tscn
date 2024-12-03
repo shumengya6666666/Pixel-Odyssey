@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://gj6rcr8tfyyk"]
+
+[ext_resource type="Script" path="res://GUI/mainmenu.gd" id="1_2rh60"]
+[ext_resource type="Texture2D" uid="uid://b4sb60gwqku2a" path="res://assets/backgrounds/屏幕截图 2024-09-03 184657.png" id="2_0cvg0"]
+[ext_resource type="Texture2D" uid="uid://cmnayhea61sra" path="res://assets/logo.png" id="2_g3sk6"]
+[ext_resource type="Script" path="res://GUI/camera2D.gd" id="2_gs6hj"]
+[ext_resource type="Script" path="res://GUI/Background.gd" id="3_hcy8t"]
+[ext_resource type="PackedScene" uid="uid://k306drrincj3" path="res://GUI/Notice_Board.tscn" id="4_5fqt7"]
+[ext_resource type="PackedScene" uid="uid://qtub2d5pmpto" path="res://GUI/settingmenu.tscn" id="5_w3gu5"]
+[ext_resource type="Script" path="res://GUI/Minecraft.gd" id="6_nhiqv"]
+[ext_resource type="AudioStream" uid="uid://fcmp3t2yo0nw" path="res://assets/sounds/click-b.ogg" id="7_xkmqb"]
+
+[node name="main" type="Panel"]
+offset_right = 532.0
+offset_bottom = 262.0
+scale = Vector2(3, 3)
+script = ExtResource("1_2rh60")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -50.0
+offset_right = 1283.0
+offset_bottom = 871.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(0, -2)
+texture = ExtResource("2_0cvg0")
+script = ExtResource("3_hcy8t")
+
+[node name="main" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1075.0
+offset_bottom = 533.0
+scale = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="LOGO" type="TextureRect" parent="main"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_g3sk6")
+
+[node name="PlayButton" type="Button" parent="main"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "开始游戏"
+
+[node name="SettingButton" type="Button" parent="main"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "游戏设置"
+
+[node name="UpdateButton" type="Button" parent="main"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "更新公告"
+
+[node name="AboutButton" type="Button" parent="main"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "游戏说明"
+
+[node name="ExitButton" type="Button" parent="main"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "退出游戏"
+
+[node name="NoticeBoard" parent="." instance=ExtResource("4_5fqt7")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -61.0
+offset_right = 1405.0
+offset_bottom = 746.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.2, 0.2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(2, 2)
+anchor_mode = 0
+enabled = false
+limit_smoothed = true
+script = ExtResource("2_gs6hj")
+
+[node name="setting" parent="." instance=ExtResource("5_w3gu5")]
+visible = false
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 535.0
+offset_bottom = 266.0
+scale = Vector2(1, 1)
+
+[node name="Minecraft" type="Label" parent="."]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 8.0
+offset_right = 536.0
+offset_bottom = 50.0
+rotation = 0.541052
+theme_override_colors/font_color = Color(1, 0.917647, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "你好！陌生人"
+script = ExtResource("6_nhiqv")
+
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xkmqb")
+
+[connection signal="pressed" from="main/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="main/SettingButton" to="." method="_on_setting_button_pressed"]
+[connection signal="pressed" from="main/UpdateButton" to="." method="_on_update_button_pressed"]
+[connection signal="pressed" from="main/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="main/ExitButton" to="." method="_on_exit_button_pressed"]

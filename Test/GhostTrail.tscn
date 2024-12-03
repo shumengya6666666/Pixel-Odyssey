@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://de1kiecfls2bf"]
+
+[sub_resource type="GDScript" id="GDScript_1uv2w"]
+script/source = "extends Sprite2D
+
+@export var duration: float = 3.0
+var timer: float = 0.0
+
+func _ready():
+	timer = duration
+	modulate.a = 0.5
+	self.z_index = -1
+
+func _process(delta: float) -> void:
+	timer -= delta
+	modulate.a = lerp(modulate.a, 0.0, 0.1)
+	if timer <= 0:
+		queue_free()
+
+# 设置残影的纹理
+func set_ghost_texture(texture: Texture2D, flip_h: bool) -> void:
+	self.texture = texture
+	self.flip_h = flip_h
+"
+
+[node name="GhostTrail" type="Sprite2D"]
+script = SubResource("GDScript_1uv2w")
